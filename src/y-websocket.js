@@ -166,6 +166,15 @@ const setupWS = (provider) => {
       } else {
         provider.wsUnsuccessfulReconnects++
       }
+      // Do not reconnect if auth failed, [4000~4011] is server side auth failed reason
+      if (event.code >= 4000 && event.code <= 4011) {
+        console.log(`Auth failed: code ${event.code}, reson:${event.reason}`);
+        return;
+      }
+      if (event.code === 4201) {
+        console.log(`Duplicated login! code ${event.code}, reson:${event.reason}`);
+        return;
+      }
       // Start with no reconnect timeout and increase timeout by
       // using exponential backoff starting with 100ms
       setTimeout(
