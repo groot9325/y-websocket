@@ -1,5 +1,5 @@
 {
-  "name": "@grote_lee/y-websocket",
+  "name": "@grotelee/y-websocket",
   "version": "1.4.5",
   "description": "Websockets provider for Yjs",
   "main": "./dist/y-websocket.cjs",
